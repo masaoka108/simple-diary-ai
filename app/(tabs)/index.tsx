@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { router } from 'expo-router';
-import { Plus, CreditCard as Edit3, Trash2 } from 'lucide-react-native';
+import { Plus, CreditCard as Edit3, Trash2, Sparkles } from 'lucide-react-native';
 import { DiaryStorage } from '@/utils/storage';
 import { DiaryEntry } from '@/types/diary';
 import { formatDate, formatTime, formatDisplayDate, isToday } from '@/utils/dateUtils';
@@ -107,6 +107,10 @@ export default function CalendarScreen() {
     });
   };
 
+  const handleAIReflection = () => {
+    router.push('/ai-summary');
+  };
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -156,6 +160,14 @@ export default function CalendarScreen() {
             <Text style={styles.todayBadgeText}>今日</Text>
           </View>
         )}
+      </View>
+
+      {/* AI Reflection Button */}
+      <View style={styles.aiButtonContainer}>
+        <TouchableOpacity style={styles.aiReflectionButton} onPress={handleAIReflection}>
+          <Sparkles size={20} color="#ffffff" />
+          <Text style={styles.aiReflectionButtonText}>AIと一緒に振り返る</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Entries List */}
@@ -272,6 +284,29 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     color: '#d97706',
+  },
+  aiButtonContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  aiReflectionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#8b5cf6',
+    paddingVertical: 16,
+    borderRadius: 12,
+    gap: 8,
+    elevation: 2,
+    shadowColor: '#8b5cf6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  aiReflectionButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
   },
   entriesList: {
     flex: 1,
