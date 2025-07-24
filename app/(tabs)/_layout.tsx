@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Calendar, PenTool } from 'lucide-react-native';
+import { Calendar, PenTool, Sparkles } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -37,6 +37,15 @@ export default function TabLayout() {
           title: '日記を書く',
           tabBarIcon: ({ size, color }) => (
             <PenTool size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="ai-summary"
+        options={{
+          title: 'AI振り返り',
+          tabBarIcon: ({ size, color }) => (
+            <Sparkles size={size} color={color} />
           ),
         }}
       />
