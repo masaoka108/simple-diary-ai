@@ -1,8 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { DiaryEntry } from '@/types/diary';
 
-// @ts-ignore
-const API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY || __DEV__ ? 'AIzaSyDWyNoD1BWTC3oTxbqNDv1IOKbUhliFI28' : undefined;
+const API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
 
 if (!API_KEY) {
   console.error('Gemini API key is not configured');
@@ -20,7 +19,7 @@ export interface AISummary {
 export const GeminiService = {
   async generateDiarySummary(entries: DiaryEntry[]): Promise<AISummary> {
     try {
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
       // 日記エントリーをテキストに変換
       const diaryText = entries
